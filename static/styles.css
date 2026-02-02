@@ -1,0 +1,41 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f7f7f7; color: #222; }
+.topbar { background: #0b6efd; color: white; padding: 16px; }
+.topbar h1 { margin: 0; }
+.subtitle { margin: 4px 0 0 0; opacity: 0.9; }
+.container { padding: 16px; }
+.wizard { background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.steps { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.step-btn { border: 1px solid #ddd; background: #f0f0f0; padding: 8px 10px; border-radius: 6px; cursor: pointer; }
+.step-btn.active { background: #0b6efd; color: white; border-color: #0b6efd; }
+.step-content { display: block; }
+.hidden { display: none; }
+.primary { background: #0b6efd; color: white; border: none; padding: 10px 14px; border-radius: 6px; cursor: pointer; }
+.secondary { background: #f0f0f0; border: 1px solid #ddd; padding: 10px 14px; border-radius: 6px; cursor: pointer; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.card { border: 1px solid #eee; padding: 12px; border-radius: 6px; background: #fafafa; }
+.ingredients-panel { margin-top: 12px; padding: 12px; background: #f8fbff; border: 1px solid #d9e8ff; border-radius: 6px; }
+.nav { margin-top: 16px; display: flex; gap: 8px; }
+.category-block { border: 1px solid #eee; border-radius: 6px; padding: 10px; margin-bottom: 10px; background: #fcfcfc; }
+.category-title { font-weight: bold; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.row { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+.row small { color: #555; }
+.row.final-row { justify-content: space-between; }
+.badge { background: #ffc107; color: #222; border-radius: 4px; padding: 2px 6px; font-size: 12px; }
+.info { margin: 10px 0; color: #0b6efd; }
+.offers { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+.offer { border: 1px solid #eee; padding: 8px; border-radius: 6px; background: #fff; }
+.export textarea { width: 100%; }
+.tiny { font-size: 12px; padding: 4px 6px; }
+.footer { text-align: center; padding: 16px; color: #555; }
+.inline-actions { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+.help { color: #666; font-size: 12px; }
+.management { margin-top: 10px; }
+.item-actions { display: inline-flex; gap: 4px; margin-left: auto; }
+.item-actions button { padding: 2px 6px; font-size: 11px; }
+.inline-actions input[type="text"] { padding: 6px; border: 1px solid #ccc; border-radius: 4px; min-width: 200px; }
+@media (max-width: 600px) {
+  .row { flex-wrap: wrap; }
+  .steps { flex-direction: column; }
+}
+

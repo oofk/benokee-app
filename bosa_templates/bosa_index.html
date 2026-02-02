@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOSA Formulier Automatisering</title>
+  <link rel="stylesheet" href="/static/bosa_styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>BOSA Subsidie Formulier Automatisering</h1>
+    <p class="subtitle">Vul automatisch het BOSA formulier in en sla gegevens op voor hergebruik</p>
+  </header>
+
+  <main class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="data">1. Gegevens Invoeren</button>
+      <button class="tab-btn" data-tab="costs">2. Kosten Beheren</button>
+      <button class="tab-btn" data-tab="fill">3. Formulier Invullen</button>
+      <button class="tab-btn" data-tab="settings">4. Instellingen</button>
+    </div>
+
+    <!-- Tab: Gegevens Invoeren -->
+    <div class="tab-content active" id="tab-data">
+      <h2>Formulier Gegevens</h2>
+      
+      <div class="form-section">
+        <h3>Aanvrager</h3>
+        <div class="form-grid">
+          <label>
+            Naam amateursport organisatie *
+            <input type="text" id="naam_organisatie" required>
+          </label>
+          <label>
+            KVK-nummer *
+            <input type="text" id="kvk_nummer" required>
+          </label>
+          <label>
+            BTW-plichtig?
+            <select id="btw_plichtig">
+              <option value="">-- Selecteer --</option>
+              <option value="ja">Ja</option>
+              <option value="nee">Nee</option>
+            </select>
+          </label>
+          <label>
+            Recht op BTW-aftrek?
+            <select id="btw_aftrek">
+              <option value="">-- Selecteer --</option>
+              <option value="ja">Ja</option>
+              <option value="gedeeltelijk">Gedeeltelijk</option>
+              <option value="nee">Nee</option>
+            </select>
+          </label>
+          <label>
+            Straat *
+            <input type="text" id="straat" required>
+          </label>
+          <label>
+            Huisnummer *
+            <input type="text" id="huisnummer" required>
+          </label>
+          <label>
+            Postcode *
+            <input type="text" id="postcode" required>
+          </label>
+          <label>
+            Plaats *
+            <input type="text" id="plaats" required>
+          </label>
+          <label>
+            Provincie *
+            <select id="provincie" required>
+              <option value="">-- Selecteer --</option>
+              <option value="Drenthe">Drenthe</option>
+              <option value="Flevoland">Flevoland</option>
+              <option value="Friesland">Friesland</option>
+              <option value="Gelderland">Gelderland</option>
+              <option value="Groningen">Groningen</option>
+              <option value="Limburg">Limburg</option>
+              <option value="Noord-Brabant">Noord-Brabant</option>
+              <option value="Noord-Holland">Noord-Holland</option>
+              <option value="Overijssel">Overijssel</option>
+              <option value="Utrecht">Utrecht</option>
+              <option value="Zeeland">Zeeland</option>
+              <option value="Zuid-Holland">Zuid-Holland</option>
+            </select>
+          </label>
+          <label>
+            Telefoonnummer
+            <input type="tel" id="telefoon">
+          </label>
+          <label>
+            E-mailadres *
+            <input type="email" id="email" required>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Contactpersoon</h3>
+        <div class="form-grid">
+          <label>
+            Voornaam *
+            <input type="text" id="voornaam_contact" required>
+          </label>
+          <label>
+            Tussenvoegsel
+            <input type="text" id="tussenvoegsel_contact">
+          </label>
+          <label>
+            Achternaam *
+            <input type="text" id="achternaam_contact" required>
+          </label>
+          <label>
+            E-mailadres *
+            <input type="email" id="email_contact" required>
+          </label>
+          <label>
+            Telefoonnummer
+            <input type="tel" id="telefoon_contact">
+          </label>
+          <label>
+            Relatienummer (indien bekend)
+            <input type="text" id="relatienummer">
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Bankgegevens</h3>
+        <div class="form-grid">
+          <label>
+            IBAN *
+            <input type="text" id="iban" required>
+          </label>
+          <label>
+            Banknaam
+            <input type="text" id="banknaam">
+          </label>
+          <label>
+            Rekeninghouder *
+            <input type="text" id="rekeninghouder" required>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Ondertekenaar</h3>
+        <div class="form-grid">
+          <label>
+            Tekenbevoegdheid *
+            <select id="tekenbevoegdheid" required>
+              <option value="">-- Selecteer --</option>
+              <option value="zelfstandig">Zelfstandig tekenbevoegd</option>
+              <option value="gezamenlijk">Gezamenlijk tekenbevoegd</option>
+              <option value="machtiging">Ondertekening per machtiging</option>
+            </select>
+          </label>
+          <label>
+            Voornaam *
+            <input type="text" id="voornaam_ondertekenaar" required>
+          </label>
+          <label>
+            Tussenvoegsel
+            <input type="text" id="tussenvoegsel_ondertekenaar">
+          </label>
+          <label>
+            Achternaam *
+            <input type="text" id="achternaam_ondertekenaar" required>
+          </label>
+          <label>
+            Functie *
+            <input type="text" id="functie_ondertekenaar" required>
+          </label>
+          <label>
+            E-mailadres *
+            <input type="email" id="email_ondertekenaar" required>
+          </label>
+          <label>
+            Telefoonnummer
+            <input type="tel" id="telefoon_ondertekenaar">
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="load-saved-data" class="btn-secondary">Laad Opgeslagen Data</button>
+        <button id="save-data" class="btn-primary">Opslaan in Excel</button>
+        <button id="download-excel" class="btn-secondary">Download Excel</button>
+      </div>
+    </div>
+
+    <!-- Tab: Kosten Beheren -->
+    <div class="tab-content" id="tab-costs">
+      <h2>Kosten Beheren</h2>
+      
+      <div class="info-box">
+        <p><strong>Instructies:</strong></p>
+        <ul>
+          <li>Upload een Excel bestand met kosten data, of</li>
+          <li>Voeg kosten handmatig toe via het formulier hieronder</li>
+          <li>Plaats documenten (facturen/offertes) in de map: <code>bosa_data/kosten_documenten</code></li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <input type="file" id="upload-costs-excel" accept=".xlsx,.xls,.ods" style="display: none;">
+        <button onclick="document.getElementById('upload-costs-excel').click()" class="btn-primary">
+          Upload Kosten Excel
+        </button>
+        <button id="download-costs-excel" class="btn-secondary">Download Kosten Excel</button>
+        <button id="add-cost-item" class="btn-secondary">Kosten Toevoegen</button>
+      </div>
+
+      <div id="costs-list" class="costs-list">
+        <!-- Kosten items worden hier dynamisch toegevoegd -->
+      </div>
+    </div>
+
+    <!-- Tab: Formulier Invullen -->
+    <div class="tab-content" id="tab-fill">
+      <h2>Formulier Automatisch Invullen</h2>
+      
+      <div class="info-box">
+        <p><strong>Let op:</strong> De browser wordt geopend en het formulier wordt automatisch ingevuld.</p>
+        <p>U kunt het proces volgen en indien nodig handmatig aanpassen.</p>
+      </div>
+
+      <div class="form-section">
+        <label class="checkbox-label">
+          <input type="checkbox" id="use-saved-data" checked>
+          Gebruik opgeslagen gegevens voor velden die niet zijn ingevuld
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="auto-advance" checked>
+          Automatisch naar volgende pagina gaan
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Directory met kosten documenten (optioneel)
+          <input type="text" id="documents-dir" placeholder="bosa_data/kosten_documenten">
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="fill-form-btn" class="btn-primary btn-large">Start Formulier Invullen</button>
+      </div>
+
+      <div id="fill-status" class="status-box hidden"></div>
+    </div>
+
+    <!-- Tab: Instellingen -->
+    <div class="tab-content" id="tab-settings">
+      <h2>Instellingen</h2>
+      
+      <div class="form-section">
+        <h3>Field Mapping</h3>
+        <p>Als het formulier niet correct wordt ingevuld, kunt u hier de veld mapping aanpassen.</p>
+        <button id="analyze-form" class="btn-primary">Analyseer Formulier Structuur</button>
+        <button id="load-mapping" class="btn-secondary">Laad Field Mapping</button>
+        <button id="save-mapping" class="btn-secondary">Sla Field Mapping Op</button>
+      </div>
+
+      <div class="form-section">
+        <h3>Browser Instellingen</h3>
+        <label class="checkbox-label">
+          <input type="checkbox" id="headless-mode">
+          Headless mode (browser niet zichtbaar)
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>BOSA Formulier Automatisering - Alle data blijft lokaal opgeslagen</p>
+  </footer>
+
+  <script src="/static/bosa_app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "260149412200",
+    "project_id": "benokee-44657",
+    "storage_bucket": "benokee-44657.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260149412200:android:4c68ee17acd72269fd56dd",
+        "android_client_info": {
+          "package_name": "com.benokee.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbvAxaabuV4ufo_hlXw-XKxdKFkW6v_r8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

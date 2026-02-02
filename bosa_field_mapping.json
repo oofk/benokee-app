@@ -1,0 +1,314 @@
+{
+  "naam_organisatie": {
+    "selector": {
+      "by": "name",
+      "value": "input_112"
+    },
+    "type": "text",
+    "id": "input_2656_112",
+    "label": "Naam amateursport organisatie",
+    "page": 1
+  },
+  "kvk_nummer": {
+    "selector": {
+      "by": "name",
+      "value": "input_406"
+    },
+    "type": "text",
+    "id": "input_2656_406",
+    "label": "KVK-nummer",
+    "page": 1
+  },
+  "btw_plichtig": {
+    "selector": {
+      "by": "name",
+      "value": "input_402"
+    },
+    "type": "radio",
+    "id": "choice_2656_402_0",
+    "label": "BTW-plichtig",
+    "page": 1,
+    "radio_options": [
+      "ja",
+      "nee"
+    ]
+  },
+  "btw_aftrek": {
+    "selector": {
+      "by": "name",
+      "value": "input_480"
+    },
+    "type": "radio",
+    "id": "choice_2656_480_0",
+    "label": "Heeft de amateursportorganisatie recht op aftrek van btw",
+    "page": 1,
+    "radio_options": [
+      "ja",
+      "gedeeltelijk",
+      "nee"
+    ]
+  },
+  "postadres_type": {
+    "selector": {
+      "by": "name",
+      "value": "input_410"
+    },
+    "type": "radio",
+    "id": "choice_2656_410_0",
+    "label": "Postadres of postbus",
+    "page": 1,
+    "radio_options": [
+      "postadres",
+      "postbus"
+    ]
+  },
+  "straat": {
+    "selector": {
+      "by": "name",
+      "value": "input_411"
+    },
+    "type": "text",
+    "id": "input_2656_411",
+    "label": "Straat",
+    "page": 1
+  },
+  "huisnummer": {
+    "selector": {
+      "by": "name",
+      "value": "input_412"
+    },
+    "type": "text",
+    "id": "input_2656_412",
+    "label": "Huisnummer en toevoeging",
+    "page": 1
+  },
+  "postcode": {
+    "selector": {
+      "by": "name",
+      "value": "input_226"
+    },
+    "type": "text",
+    "id": "input_2656_226",
+    "label": "Postcode",
+    "page": 1
+  },
+  "plaats": {
+    "selector": {
+      "by": "name",
+      "value": "input_227"
+    },
+    "type": "text",
+    "id": "input_2656_227",
+    "label": "Plaats",
+    "page": 1
+  },
+  "provincie": {
+    "selector": {
+      "by": "name",
+      "value": "input_330"
+    },
+    "type": "select",
+    "id": "input_2656_330",
+    "label": "Provincie",
+    "page": 1
+  },
+  "email": {
+    "selector": {
+      "by": "name",
+      "value": "input_413"
+    },
+    "type": "email",
+    "id": "input_2656_413",
+    "label": "E-mailadres",
+    "page": 1
+  },
+  "voornaam_contact": {
+    "selector": {
+      "by": "name",
+      "value": "input_2"
+    },
+    "type": "text",
+    "id": "input_2656_2",
+    "label": "Voornaam",
+    "page": 1
+  },
+  "tussenvoegsel_contact": {
+    "selector": {
+      "by": "name",
+      "value": "input_341"
+    },
+    "type": "text",
+    "id": "input_2656_341",
+    "label": "Tussenvoegsel",
+    "page": 1
+  },
+  "achternaam_contact": {
+    "selector": {
+      "by": "name",
+      "value": "input_3"
+    },
+    "type": "text",
+    "id": "input_2656_3",
+    "label": "Achternaam",
+    "page": 1
+  },
+  "email_contact": {
+    "selector": {
+      "by": "name",
+      "value": "input_6"
+    },
+    "type": "email",
+    "id": "input_2656_6",
+    "label": "E-mailadres",
+    "page": 1
+  },
+  "telefoon_contact": {
+    "selector": {
+      "by": "name",
+      "value": "input_98"
+    },
+    "type": "text",
+    "id": "input_2656_98",
+    "label": "Telefoonnummer",
+    "page": 1
+  },
+  "relatienummer": {
+    "selector": {
+      "by": "name",
+      "value": "input_306"
+    },
+    "type": "text",
+    "id": "input_2656_306",
+    "label": "Relatienummer",
+    "page": 1
+  },
+  "intermediair": {
+    "selector": {
+      "by": "name",
+      "value": "input_333"
+    },
+    "type": "radio",
+    "id": "choice_2656_333_0",
+    "label": "Vraagt u als intermediair aan",
+    "page": 1,
+    "radio_options": [
+      "ja",
+      "nee"
+    ]
+  },
+  "akkoord_digitale_correspondentie": {
+    "selector": {
+      "by": "name",
+      "value": "input_205.1"
+    },
+    "type": "checkbox",
+    "id": "choice_2656_205_1",
+    "label": "Ik ga akkoord met digitale correspondentie",
+    "page": 1
+  },
+  "iban": {
+    "selector": {
+      "by": "name",
+      "value": "input_416.1"
+    },
+    "type": "text",
+    "id": "input_2656_416_1",
+    "label": "IBAN",
+    "page": 1
+  },
+  "banknaam": {
+    "selector": {
+      "by": "name",
+      "value": "input_416.2"
+    },
+    "type": "text",
+    "id": "input_2656_416_2",
+    "label": "Banknaam",
+    "page": 1
+  },
+  "rekeninghouder": {
+    "selector": {
+      "by": "name",
+      "value": "input_416.4"
+    },
+    "type": "text",
+    "id": "input_2656_416_4",
+    "label": "Rekeninghouder",
+    "page": 1
+  },
+  "tekenbevoegdheid": {
+    "selector": {
+      "by": "name",
+      "value": "input_331"
+    },
+    "type": "radio",
+    "id": "choice_2656_331_0",
+    "label": "Tekenbevoegdheid",
+    "page": 1,
+    "radio_options": [
+      "zelfstandig",
+      "gezamenlijk",
+      "machtiging"
+    ]
+  },
+  "voornaam_ondertekenaar": {
+    "selector": {
+      "by": "name",
+      "value": "input_56"
+    },
+    "type": "text",
+    "id": "input_2656_56",
+    "label": "Voornaam",
+    "page": 1
+  },
+  "tussenvoegsel_ondertekenaar": {
+    "selector": {
+      "by": "name",
+      "value": "input_474"
+    },
+    "type": "text",
+    "id": "input_2656_474",
+    "label": "Tussenvoegsel",
+    "page": 1
+  },
+  "achternaam_ondertekenaar": {
+    "selector": {
+      "by": "name",
+      "value": "input_57"
+    },
+    "type": "text",
+    "id": "input_2656_57",
+    "label": "Achternaam",
+    "page": 1
+  },
+  "functie_ondertekenaar": {
+    "selector": {
+      "by": "name",
+      "value": "input_87"
+    },
+    "type": "text",
+    "id": "input_2656_87",
+    "label": "Functie",
+    "page": 1
+  },
+  "email_ondertekenaar": {
+    "selector": {
+      "by": "name",
+      "value": "input_318"
+    },
+    "type": "email",
+    "id": "input_2656_318",
+    "label": "E-mailadres",
+    "page": 1
+  },
+  "telefoon_ondertekenaar": {
+    "selector": {
+      "by": "name",
+      "value": "input_61"
+    },
+    "type": "text",
+    "id": "input_2656_61",
+    "label": "Telefoonnummer",
+    "page": 1
+  }
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boodschappenplanner</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Boodschappenplanner</h1>
+    <p class="subtitle">Plan de week, pak bonusaanbiedingen, exporteer de lijst.</p>
+  </header>
+
+  <main class="container">
+    <section class="wizard">
+      <div class="steps">
+        <button class="step-btn active" data-step="1">Stap 1: Week</button>
+        <button class="step-btn" data-step="2">Stap 2: Gerechten</button>
+        <button class="step-btn" data-step="3">Stap 3: Standaard</button>
+        <button class="step-btn" data-step="4">Stap 4: Incidenteel</button>
+        <button class="step-btn" data-step="5">Stap 5: Overzicht</button>
+      </div>
+
+      <div class="step-content" id="step-1">
+        <h2>Stap 1 – Instellen van de week</h2>
+        <label>
+          Voor hoeveel dagen wil je gerechten plannen?
+          <input type="number" id="days-input" min="1" max="14" value="5">
+        </label>
+        <label>
+          Voor hoeveel personen? (optioneel)
+          <input type="number" id="persons-input" min="1" max="10" value="4">
+        </label>
+        <div class="nav">
+          <button id="to-step-2" class="primary">Volgende</button>
+          <button id="skip-to-3" class="secondary">Sla gerechten over</button>
+        </div>
+      </div>
+
+      <div class="step-content hidden" id="step-2">
+        <h2>Stap 2 – Gerechten kiezen</h2>
+        <div class="inline-actions">
+          <button id="add-dish" class="tiny">Nieuw gerecht</button>
+          <span class="help">Beheer gerechten: klik op een gerecht om te kiezen, of gebruik de knoppen hieronder.</span>
+        </div>
+        <div id="dish-selectors" class="card-grid"></div>
+        <div id="dish-management" class="management"></div>
+        <div class="ingredients-panel">
+          <h3>Ingrediënten uit gerechten</h3>
+          <ul id="ingredients-list"></ul>
+        </div>
+        <div class="nav">
+          <button class="secondary" data-prev="1">Vorige</button>
+          <button class="primary" data-next="3">Volgende</button>
+        </div>
+      </div>
+
+      <div class="step-content hidden" id="step-3">
+        <h2>Stap 3 – Standaard boodschappen</h2>
+        <div class="inline-actions">
+          <button id="add-standard" class="tiny">Item toevoegen</button>
+          <span class="help">Bewerk of verwijder items met de knoppen per item.</span>
+        </div>
+        <div id="standard-items"></div>
+        <div class="nav">
+          <button class="secondary" data-prev="2">Vorige</button>
+          <button class="primary" data-next="4">Volgende</button>
+        </div>
+      </div>
+
+      <div class="step-content hidden" id="step-4">
+        <h2>Stap 4 – Incidentele boodschappen</h2>
+        <div class="inline-actions">
+          <button id="add-incidental" class="tiny">Item toevoegen</button>
+          <span class="help">Bewerk of verwijder items met de knoppen per item.</span>
+        </div>
+        <div id="incidental-items"></div>
+        <div class="nav">
+          <button class="secondary" data-prev="3">Vorige</button>
+          <button class="primary" data-next="5">Ga naar overzicht</button>
+        </div>
+      </div>
+
+      <div class="step-content hidden" id="step-5">
+        <h2>Stap 5 – Overzicht & export</h2>
+        <div class="management">
+          <h3>Gerechten in deze week</h3>
+          <div id="final-dishes"></div>
+          <div class="inline-actions">
+            <select id="final-add-dish"></select>
+            <button id="final-add-dish-btn" class="tiny">Gerecht toevoegen</button>
+            <span class="help">Voeg een gerecht toe of verwijder er één; lijst wordt direct bijgewerkt.</span>
+          </div>
+        </div>
+        <div class="inline-actions">
+          <input type="text" id="add-final-input" placeholder="Ingrediënt toevoegen aan lijst" />
+          <button id="add-final-btn" class="tiny">Toevoegen</button>
+          <span class="help">Wordt direct toegevoegd aan incidentele items en de eindlijst.</span>
+        </div>
+        <div id="final-list"></div>
+        <div class="export">
+          <h3>Exporteerbare lijst</h3>
+          <textarea id="export-text" readonly rows="10"></textarea>
+          <button id="copy-btn" class="primary">Kopieer lijst</button>
+        </div>
+        <div id="bonus-suggestions" class="suggestions"></div>
+        <div class="nav">
+          <button class="secondary" data-prev="4">Vorige</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Eén huishouden, lokaal en simpel. Alle data blijft op deze laptop.</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

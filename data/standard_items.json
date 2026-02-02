@@ -1,0 +1,154 @@
+[
+  {
+    "id": "std-brood-week",
+    "category": "Brood & beleg",
+    "name": "Brood week",
+    "note": "Minimaal 2",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-brood-weekend",
+    "category": "Brood & beleg",
+    "name": "Brood weekend",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-beleg-week",
+    "category": "Brood & beleg",
+    "name": "Beleg week",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-gv-brood-wit",
+    "category": "Glutenvrij (Lein)",
+    "name": "Glutenvrij brood wit",
+    "note": "",
+    "forWhom": "Lein",
+    "isFrequent": true
+  },
+  {
+    "id": "std-gv-pasta",
+    "category": "Glutenvrij (Lein)",
+    "name": "Glutenvrije pasta",
+    "note": "",
+    "forWhom": "Lein",
+    "isFrequent": true
+  },
+  {
+    "id": "std-appels-mooie",
+    "category": "Fruit & groente",
+    "name": "Appels (mooie)",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-bananen",
+    "category": "Fruit & groente",
+    "name": "Bananen",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-broccoli",
+    "category": "Fruit & groente",
+    "name": "Broccoli",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-chili-bonen",
+    "category": "Basisproducten",
+    "name": "Chili bonen blik",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-mutti-blikjes",
+    "category": "Basisproducten",
+    "name": "Mutti tomatenblikjes",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-aluminium-folie",
+    "category": "Basisproducten",
+    "name": "Aluminiumfolie",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": true
+  },
+  {
+    "id": "std-yoghurt",
+    "category": "Zuivel & eieren",
+    "name": "Yoghurt",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": false
+  },
+  {
+    "id": "std-kaas",
+    "category": "Zuivel & eieren",
+    "name": "Kaas",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": false
+  },
+  {
+    "id": "std-limonadesiroop",
+    "category": "Drinken",
+    "name": "Limonadesiroop",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": false
+  },
+  {
+    "id": "std-koffiebonen",
+    "category": "Drinken",
+    "name": "Koffiebonen",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": false
+  },
+  {
+    "id": "std-venz-hagel",
+    "category": "Snacks & koek",
+    "name": "Venz hagelslag/blauwe hagel",
+    "note": "",
+    "forWhom": "Pom/jeugd",
+    "isFrequent": false
+  },
+  {
+    "id": "std-chips-mix",
+    "category": "Snacks & koek",
+    "name": "Chips mix",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": false
+  },
+  {
+    "id": "std-afwasmiddel",
+    "category": "Huishouden",
+    "name": "Afwasmiddel",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": false
+  },
+  {
+    "id": "std-wc-papier",
+    "category": "Huishouden",
+    "name": "WC papier",
+    "note": "",
+    "forWhom": "",
+    "isFrequent": false
+  }
+]

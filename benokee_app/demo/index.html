@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Benokee App - Een eenvoudige check-in app voor ouderen. Dagelijkse herinneringen en automatische e-mail alerts.">
+    <title>Benokee App - Interactieve Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .demo-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Language Selection Screen */
+        .language-screen {
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .language-buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .language-button {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+
+        .language-button:hover {
+            transform: scale(1.1);
+            border-color: white;
+        }
+
+        .language-flag {
+            font-size: 60px;
+            margin-bottom: 8px;
+        }
+
+        .language-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .logo:active {
+            transform: scale(0.95);
+        }
+
+        .logo-inner {
+            width: 160px;
+            height: 160px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .logo-text {
+            font-size: 64px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 4px;
+        }
+
+        .welcome-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .welcome-desc {
+            font-size: 24px;
+        }
+
+        /* Onboarding Screen */
+        .onboarding-screen {
+            padding: 40px 30px;
+            text-align: center;
+            background: #f5f5f5;
+        }
+
+        .onboarding-header {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .onboarding-icon {
+            font-size: 120px;
+            color: #4CAF50;
+            margin-bottom: 40px;
+        }
+
+        .onboarding-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .onboarding-desc {
+            font-size: 24px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .page-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: auto;
+            margin-bottom: 30px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: #ccc;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            width: 24px;
+            background: #4CAF50;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px 20px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #666;
+        }
+
+        .btn-secondary:hover {
+            color: #333;
+        }
+
+        .help-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Email Input Screen */
+        .email-input-screen {
+            padding: 40px 30px;
+            background: white;
+        }
+
+        .email-input-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            font-size: 24px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .input-field.valid {
+            border-color: #4CAF50;
+        }
+
+        .input-field.invalid {
+            border-color: #f44336;
+        }
+
+        .email-status {
+            margin-top: 8px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .email-status.valid {
+            color: #4CAF50;
+        }
+
+        .email-status.invalid {
+            color: #f44336;
+        }
+
+        .send-email-btn {
+            width: 100%;
+            padding: 16px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .send-email-btn:hover {
+            background: #1976D2;
+        }
+
+        /* Home Screen */
+        .home-screen {
+            background: #f5f5f5;
+            position: relative;
+        }
+
+        .ok-button {
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(76, 175, 80, 0.5);
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .ok-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(76, 175, 80, 0.6);
+        }
+
+        .ok-button:active {
+            transform: scale(0.95);
+        }
+
+        .ok-text {
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .settings-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            aspect-ratio: 1;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+
+        .settings-icon:hover {
+            background: #d0d0d0;
+            transform: rotate(90deg);
+        }
+
+        /* Confirmation Dialog */
+        .confirmation-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .confirmation-dialog.show {
+            display: flex;
+        }
+
+        .confirmation-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 300px;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .confirmation-icon {
+            font-size: 100px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .confirmation-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .confirmation-message {
+            font-size: 20px;
+            color: #666;
+        }
+
+        /* Settings Screen */
+        .settings-screen {
+            background: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .settings-header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .settings-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .settings-item:hover {
+            background: #f5f5f5;
+        }
+
+        .settings-icon-item {
+            font-size: 32px;
+            color: #4CAF50;
+        }
+
+        .settings-content {
+            flex: 1;
+        }
+
+        .settings-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .settings-subtitle {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .snackbar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4CAF50;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-size: 20px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .snackbar.show {
+            display: block;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .auto-play-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .auto-play-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .auto-play-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        .share-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <button class="share-btn" onclick="shareDemo()">🔗 Deel Demo</button>
+    
+    <div class="demo-container">
+        <!-- Welcome Screen -->
+        <div class="screen welcome-screen active" id="welcome">
+            <div style="position: absolute; top: 20px; right: 20px; z-index: 10;">
+                <div class="language-button" style="width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); cursor: pointer;" onclick="toggleLanguage()">
+                    <div class="language-flag" id="languageFlag" style="font-size: 32px; line-height: 1; user-select: none;">🇬🇧</div>
+                </div>
+            </div>
+            <div class="logo" onclick="startOnboarding()">
+                <div class="logo-inner">
+                    <div class="logo-text">OK</div>
+                </div>
+            </div>
+            <div class="welcome-title" id="welcomeTitle">Welkom bij Benokee</div>
+            <div class="welcome-desc" id="welcomeDesc">De app om te laten weten dat je oké bent</div>
+        </div>
+
+        <!-- Onboarding Screens -->
+        <div class="screen onboarding-screen" id="onboarding1">
+            <div class="onboarding-header">Zo werkt de app...</div>
+            <div class="onboarding-header" style="font-size: 18px; margin-top: -10px;">Stap 1 van 4</div>
+            <button class="help-btn" onclick="showHelp()">Help</button>
+            <div class="onboarding-icon">📧</div>
+            <div class="onboarding-title">Voer email adres in</div>
+            <div class="onboarding-desc">Voer het email adres van je noodcontact in.</div>
+            <div class="page-indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+            <div class="nav-buttons">
+                <div></div>
+                <button class="btn btn-primary" onclick="nextOnboarding()">Volgende</button>
+            </div>
+        </div>
+
+        <div class="screen onboarding-screen" id="onboarding2">
+            <div class="onboarding-header">Zo werkt de app...</div>
+            <div class="onboarding-header" style="font-size: 18px; margin-top: -10px;">Stap 2 van 4</div>
+            <button class="help-btn" onclick="showHelp()">Help</button>
+            <div class="onboarding-icon">🔔</div>
+            <div class="onboarding-title">Elke dag een herinnering</div>
+            <div class="onboarding-desc">De app stuurt je elke dag een herinnering om in te loggen.</div>
+            <div class="page-indicators">
+                <div class="indicator"></div>
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="prevOnboarding()">Vorige</button>
+                <button class="btn btn-primary" onclick="nextOnboarding()">Volgende</button>
+            </div>
+        </div>
+
+        <div class="screen onboarding-screen" id="onboarding3">
+            <div class="onboarding-header">Zo werkt de app...</div>
+            <div class="onboarding-header" style="font-size: 18px; margin-top: -10px;">Stap 3 van 4</div>
+            <button class="help-btn" onclick="showHelp()">Help</button>
+            <div class="onboarding-icon">✅</div>
+            <div class="onboarding-title">Druk OK bij prompt</div>
+            <div class="onboarding-desc">Wanneer je een notificatie krijgt, druk op de grote OK knop in de app.</div>
+            <div class="page-indicators">
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="prevOnboarding()">Vorige</button>
+                <button class="btn btn-primary" onclick="nextOnboarding()">Volgende</button>
+            </div>
+        </div>
+
+        <div class="screen onboarding-screen" id="onboarding4">
+            <div class="onboarding-header">Zo werkt de app...</div>
+            <div class="onboarding-header" style="font-size: 18px; margin-top: -10px;">Stap 4 van 4</div>
+            <button class="help-btn" onclick="showHelp()">Help</button>
+            <div class="onboarding-icon">⚠️</div>
+            <div class="onboarding-title">Wat gebeurt er als je niet inlogt?</div>
+            <div class="onboarding-desc">Als je 2 opeenvolgende dagen niet inlogt, krijgen je noodcontacten automatisch een e-mail om te laten weten dat er mogelijk iets aan de hand is.</div>
+            <div class="page-indicators">
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator active"></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="prevOnboarding()">Vorige</button>
+                <button class="btn btn-primary" onclick="showEmailInput()">Start</button>
+            </div>
+        </div>
+
+        <!-- Email Input Screen -->
+        <div class="screen email-input-screen" id="emailInput">
+            <div class="email-input-title">Noodcontact</div>
+            <div class="input-group">
+                <label class="input-label">Email adres</label>
+                <input type="email" class="input-field" placeholder="voorbeeld@email.com" id="emailField" oninput="validateEmail()">
+                <div id="emailStatus" class="email-status"></div>
+            </div>
+            <div class="input-group">
+                <label class="input-label">Naam (optioneel)</label>
+                <input type="text" class="input-field" placeholder="Jouw naam" id="nameField" value="Demo Gebruiker">
+            </div>
+            <button class="send-email-btn" id="sendEmailBtn" onclick="sendIntroEmail()">
+                📧 Verstuur introductie e-mail
+            </button>
+            <div id="emailRequired" style="margin-top: 10px; font-size: 16px; color: #f57c00; text-align: center; font-style: italic; display: none;">
+                Verstuur eerst de introductie e-mail voordat je doorgaat.
+            </div>
+            <div style="margin-top: 30px; display: flex; gap: 10px;">
+                <button class="btn btn-secondary" onclick="backToOnboarding()" style="flex: 1;">Terug</button>
+                <button class="btn btn-primary" id="saveBtn" onclick="startApp()" style="flex: 1; opacity: 0.5; cursor: not-allowed;" disabled>Opslaan</button>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div class="screen home-screen" id="home">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                <button class="ok-button" onclick="handleOkClick()" style="position: relative; transform: none; top: auto; left: auto;">
+                    <div class="ok-text">IK BEN<br>OKÉ</div>
+                </button>
+                <div id="lastCheckInTime" style="margin-top: 20px; padding: 8px 16px; background: #e0e0e0; border-radius: 20px; font-size: 18px; color: #333; font-weight: 500;">
+                    Laatste check-in: Nog geen check-in
+                </div>
+            </div>
+            <div class="settings-icon" onclick="showSettings()">⚙️</div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div class="screen settings-screen" id="settings">
+            <div class="settings-header">Instellingen</div>
+            <button class="back-button" onclick="showHome()">←</button>
+            <div class="settings-item">
+                <div class="settings-icon-item">📧</div>
+                <div class="settings-content">
+                    <div class="settings-title">Noodcontacten</div>
+                    <div class="settings-subtitle">1 contact</div>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="settings-icon-item">🕐</div>
+                <div class="settings-content">
+                    <div class="settings-title">Check-tijd</div>
+                    <div class="settings-subtitle">09:00</div>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="settings-icon-item">📧</div>
+                <div class="settings-content">
+                    <div class="settings-title">Email modus</div>
+                    <div class="settings-subtitle">Alleen na 2 gemiste dagen</div>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="settings-icon-item">🔤</div>
+                <div class="settings-content">
+                    <div class="settings-title">Tekstgrootte</div>
+                    <div class="settings-subtitle">Normaal</div>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="settings-icon-item">📳</div>
+                <div class="settings-content">
+                    <div class="settings-title">Trilfeedback</div>
+                    <div class="settings-subtitle">Aan</div>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="settings-icon-item">⚙️</div>
+                <div class="settings-content">
+                    <div class="settings-title">Eenvoudige modus</div>
+                    <div class="settings-subtitle">Aan</div>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="settings-icon-item">❓</div>
+                <div class="settings-content">
+                    <div class="settings-title">Help en ondersteuning</div>
+                    <div class="settings-subtitle">Veelgestelde vragen en contact</div>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="settings-icon-item">📜</div>
+                <div class="settings-content">
+                    <div class="settings-title">Bekijk logs</div>
+                    <div class="settings-subtitle">Laatste 10 check-ins</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Dialog -->
+    <div class="confirmation-dialog" id="confirmationDialog">
+        <div class="confirmation-content">
+            <div class="confirmation-icon">✅</div>
+            <div class="confirmation-title">Check-in geregistreerd!</div>
+            <div class="confirmation-message">Je contactpersoon is op de hoogte gesteld.</div>
+        </div>
+    </div>
+
+    <div class="snackbar" id="snackbar">Check-in geregistreerd!</div>
+
+    <div class="auto-play-controls">
+        <button class="auto-play-btn" onclick="startAutoPlay()">▶️ Auto Demo</button>
+        <button class="auto-play-btn" onclick="resetDemo()">🔄 Reset</button>
+    </div>
+
+    <script>
+        let currentScreen = 'welcome';
+        let currentLanguage = 'nl';
+        let onboardingStep = 0;
+        let autoPlayInterval = null;
+        let introEmailSent = false;
+        let lastCheckInTime = null;
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'nl' ? 'en' : 'nl';
+            const flag = document.getElementById('languageFlag');
+            const title = document.getElementById('welcomeTitle');
+            const desc = document.getElementById('welcomeDesc');
+            
+            if (currentLanguage === 'nl') {
+                flag.textContent = '🇬🇧';
+                title.textContent = 'Welkom bij Benokee';
+                desc.textContent = 'De app om te laten weten dat je oké bent';
+            } else {
+                flag.textContent = '🇳🇱';
+                title.textContent = 'Welcome to Benokee';
+                desc.textContent = 'The app to let others know you are okay';
+            }
+        }
+
+        function validateEmail() {
+            const emailField = document.getElementById('emailField');
+            const emailStatus = document.getElementById('emailStatus');
+            const email = emailField.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email === '') {
+                emailField.classList.remove('valid', 'invalid');
+                emailStatus.textContent = '';
+                return;
+            }
+            
+            if (emailRegex.test(email)) {
+                emailField.classList.add('valid');
+                emailField.classList.remove('invalid');
+                emailStatus.textContent = '✓ Geldig e-mailadres';
+                emailStatus.className = 'email-status valid';
+            } else {
+                emailField.classList.add('invalid');
+                emailField.classList.remove('valid');
+                emailStatus.textContent = '✗ Ongeldig e-mailadres';
+                emailStatus.className = 'email-status invalid';
+            }
+        }
+
+        function sendIntroEmail() {
+            const email = document.getElementById('emailField').value.trim();
+            if (!email || !email.includes('@')) {
+                showSnackbar('Voer eerst een geldig e-mailadres in');
+                return;
+            }
+            introEmailSent = true;
+            const btn = document.getElementById('sendEmailBtn');
+            btn.textContent = '✅ Introductie e-mail verstuurd!';
+            btn.style.backgroundColor = '#4CAF50';
+            document.getElementById('emailRequired').style.display = 'none';
+            document.getElementById('saveBtn').disabled = false;
+            document.getElementById('saveBtn').style.opacity = '1';
+            document.getElementById('saveBtn').style.cursor = 'pointer';
+            showSnackbar('📧 Introductie e-mail verstuurd!');
+        }
+
+        function showHelp() {
+            alert('Help: Je kunt altijd teruggaan met de "Vorige" knop. Als je vragen hebt, bekijk de Help sectie in de instellingen.');
+        }
+
+        function shareDemo() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Benokee App - Interactieve Demo',
+                    text: 'Bekijk deze interactieve demo van de Benokee app!',
+                    url: url
+                }).catch(() => {
+                    copyToClipboard(url);
+                });
+            } else {
+                copyToClipboard(url);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showSnackbar('🔗 Link gekopieerd naar klembord!');
+            }).catch(() => {
+                prompt('Kopieer deze link:', text);
+            });
+        }
+
+        // Make OK button perfectly round
+        function updateOkButtonSize() {
+            const container = document.querySelector('.demo-container');
+            const okButton = document.querySelector('.ok-button');
+            if (container && okButton) {
+                const containerWidth = container.offsetWidth;
+                const containerHeight = container.offsetHeight;
+                const minDimension = Math.min(containerWidth, containerHeight);
+                const buttonSize = minDimension * 0.7;
+                okButton.style.width = buttonSize + 'px';
+                okButton.style.height = buttonSize + 'px';
+                // Update text size based on button size (20% of button size for better fit)
+                const okText = okButton.querySelector('.ok-text');
+                if (okText) {
+                    const fontSize = buttonSize * 0.2;
+                    okText.style.fontSize = fontSize + 'px';
+                    okText.style.letterSpacing = (fontSize * 0.04) + 'px';
+                }
+            }
+        }
+
+        // Update on load and resize
+        window.addEventListener('load', updateOkButtonSize);
+        window.addEventListener('resize', updateOkButtonSize);
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            currentScreen = screenId;
+            // Update button size when showing home screen
+            if (screenId === 'home') {
+                setTimeout(updateOkButtonSize, 10);
+            }
+        }
+
+        function startOnboarding() {
+            onboardingStep = 0;
+            showScreen('onboarding1');
+            updateIndicators(0);
+        }
+
+        function nextOnboarding() {
+            onboardingStep++;
+            if (onboardingStep < 4) {
+                showScreen(`onboarding${onboardingStep + 1}`);
+                updateIndicators(onboardingStep);
+            }
+        }
+
+        function prevOnboarding() {
+            if (onboardingStep > 0) {
+                onboardingStep--;
+                showScreen(`onboarding${onboardingStep + 1}`);
+                updateIndicators(onboardingStep);
+            }
+        }
+
+        function updateIndicators(step) {
+            document.querySelectorAll('.page-indicators .indicator').forEach((ind, idx) => {
+                ind.classList.toggle('active', idx === step);
+            });
+        }
+
+        function showEmailInput() {
+            showScreen('emailInput');
+        }
+
+        function backToOnboarding() {
+            onboardingStep = 3;
+            showScreen('onboarding4');
+        }
+
+        function startApp() {
+            showScreen('home');
+            showSnackbar('Welkom bij Benokee!');
+        }
+
+        function showSettings() {
+            showScreen('settings');
+        }
+
+        function showHome() {
+            showScreen('home');
+        }
+
+        function handleOkClick() {
+            // Update last check-in time
+            lastCheckInTime = new Date();
+            updateLastCheckInDisplay();
+            
+            // In real app, check email mode
+            // For demo, we'll show confirmation (simulating "always" mode)
+            const emailMode = 'always'; // In real app: await storage.getEmailMode()
+            
+            if (emailMode === 'always') {
+                // Show confirmation dialog only if email mode is "always"
+                const dialog = document.getElementById('confirmationDialog');
+                dialog.classList.add('show');
+                
+                // Auto-close after 2 seconds
+                setTimeout(() => {
+                    dialog.classList.remove('show');
+                }, 2000);
+            } else {
+                // Just show snackbar for other modes
+                showSnackbar('Check-in geregistreerd!');
+            }
+        }
+
+        function updateLastCheckInDisplay() {
+            const display = document.getElementById('lastCheckInTime');
+            if (!display || !lastCheckInTime) return;
+            
+            const now = new Date();
+            const diff = now - lastCheckInTime;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+            
+            let timeText = 'Laatste check-in: ';
+            if (days > 0) {
+                timeText += days + (days === 1 ? ' dag' : ' dagen');
+            } else if (hours > 0) {
+                timeText += hours + (hours === 1 ? ' uur' : ' uren');
+            } else if (minutes > 0) {
+                timeText += minutes + (minutes === 1 ? ' minuut' : ' minuten');
+            } else {
+                timeText += 'Zojuist';
+            }
+            
+            display.textContent = timeText;
+        }
+
+        // Update time display every minute
+        setInterval(() => {
+            if (lastCheckInTime) {
+                updateLastCheckInDisplay();
+            }
+        }, 60000);
+
+        function showSnackbar(message) {
+            const snackbar = document.getElementById('snackbar');
+            snackbar.textContent = message;
+            snackbar.classList.add('show');
+            setTimeout(() => {
+                snackbar.classList.remove('show');
+            }, 2000);
+        }
+
+        function startAutoPlay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+                return;
+            }
+
+            // Reset to start
+            resetDemo();
+            
+            const steps = [
+                { screen: 'welcome', delay: 3000 },
+                { screen: 'onboarding1', delay: 4000 },
+                { screen: 'onboarding2', delay: 4000 },
+                { screen: 'onboarding3', delay: 4000 },
+                { screen: 'onboarding4', delay: 4000 },
+                { screen: 'emailInput', delay: 3000 },
+                { screen: 'home', delay: 3000 },
+                { action: 'clickOk', delay: 2000 },
+                { screen: 'settings', delay: 3000 },
+                { screen: 'home', delay: 2000 },
+            ];
+
+            let stepIndex = 0;
+            let totalDelay = 0;
+
+            steps.forEach((step, idx) => {
+                setTimeout(() => {
+                    if (step.screen) {
+                        if (step.screen.startsWith('onboarding')) {
+                            const num = parseInt(step.screen.replace('onboarding', ''));
+                            onboardingStep = num - 1;
+                            updateIndicators(onboardingStep);
+                        }
+                        showScreen(step.screen);
+                    } else if (step.action === 'clickOk') {
+                        handleOkClick();
+                    }
+                }, totalDelay);
+                totalDelay += step.delay;
+            });
+        }
+
+        function resetDemo() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+            }
+            onboardingStep = 0;
+            introEmailSent = false;
+            lastCheckInTime = null;
+            showScreen('welcome');
+            updateIndicators(0);
+            // Reset email input
+            document.getElementById('emailField').value = '';
+            document.getElementById('emailStatus').textContent = '';
+            document.getElementById('sendEmailBtn').textContent = '📧 Verstuur introductie e-mail';
+            document.getElementById('sendEmailBtn').style.backgroundColor = '#2196F3';
+            document.getElementById('emailRequired').style.display = 'none';
+            document.getElementById('saveBtn').disabled = true;
+            document.getElementById('saveBtn').style.opacity = '0.5';
+            document.getElementById('saveBtn').style.cursor = 'not-allowed';
+            if (document.getElementById('lastCheckInTime')) {
+                document.getElementById('lastCheckInTime').textContent = 'Laatste check-in: Nog geen check-in';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentScreen.startsWith('onboarding')) {
+                nextOnboarding();
+            } else if (e.key === 'ArrowLeft' && currentScreen.startsWith('onboarding')) {
+                prevOnboarding();
+            }
+        });
+    </script>
+</body>
+</html>

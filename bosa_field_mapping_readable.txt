@@ -1,0 +1,130 @@
+BOSA Formulier Field Mapping
+==================================================
+
+Field: achternaam_contact
+  Label: Achternaam
+  Type: text
+  Selector: id = input_2656_3
+  Pagina: 1
+
+Field: akkoord_digitale_correspondentie
+  Label: Ik ga akkoord met digitale correspondentie
+  Type: checkbox
+  Selector: id = choice_2656_205_1
+  Pagina: 1
+
+Field: btw_aftrek
+  Label: Heeft de amateursportorganisatie recht op aftrek van btw
+  Type: radio
+  Selector: id = choice_2656_480_0
+  Pagina: 1
+
+Field: email_contact
+  Label: E-mailadres
+  Type: email
+  Selector: id = input_2656_6
+  Pagina: 1
+
+Field: gezamenlijke_aanvraag
+  Label: Wilt u namens andere amateursportorganisaties een gezamenlijke aanvraag indienen
+  Type: radio
+  Selector: id = choice_2656_500_0
+  Pagina: 1
+
+Field: intermediair
+  Label: Vraagt u als intermediair aan
+  Type: radio
+  Selector: id = choice_2656_333_0
+  Pagina: 1
+
+Field: kvk_nummer
+  Label: KVk-nummer, Row 1
+  Type: text
+  Selector: name = input_541[]
+  Pagina: 3
+
+Field: naam_organisatie
+  Label: Naam amateursport organisatie
+  Type: text
+  Selector: id = input_2656_112
+  Pagina: 2
+
+Field: next_button_step_1
+  Label: Volgende knop stap 1
+  Type: button
+  Selector: id = gform_next_button_2656_31
+  Pagina: 1
+
+Field: next_button_step_2
+  Label: Volgende knop stap 2
+  Type: button
+  Selector: id = gform_next_button_2656_414
+  Pagina: 2
+
+Field: next_button_step_3
+  Label: Volgende knop stap 3
+  Type: button
+  Selector: id = gform_next_button_2656_422
+  Pagina: 3
+
+Field: next_button_step_4
+  Label: Volgende knop stap 4
+  Type: button
+  Selector: id = gform_next_button_2656_424
+  Pagina: 4
+
+Field: next_button_step_5
+  Label: Volgende knop stap 5
+  Type: button
+  Selector: id = gform_next_button_2656_120
+  Pagina: 5
+
+Field: next_button_step_6
+  Label: Volgende knop stap 6
+  Type: button
+  Selector: id = gform_next_button_2656_146
+  Pagina: 6
+
+Field: next_button_step_7
+  Label: Volgende knop stap 7
+  Type: button
+  Selector: id = gform_next_button_2656_270
+  Pagina: 7
+
+Field: next_button_step_8
+  Label: Volgende knop stap 8
+  Type: button
+  Selector: id = gform_next_button_2656_20
+  Pagina: 8
+
+Field: plaats
+  Label: Plaats
+  Type: text
+  Selector: id = input_2656_227
+  Pagina: 2
+
+Field: postadres_type
+  Label: Postbus
+  Type: radio
+  Selector: id = choice_2656_410_1
+  Pagina: 2
+  Waarden: ['postadres', 'postbus']
+
+Field: postcode
+  Label: Postcode
+  Type: text
+  Selector: id = input_2656_226
+  Pagina: 2
+
+Field: provincie
+  Label: Provincie
+  Type: select
+  Selector: id = input_2656_330
+  Pagina: 2
+
+Field: voornaam_contact
+  Label: Voornaam
+  Type: text
+  Selector: id = input_2656_2
+  Pagina: 1
+
