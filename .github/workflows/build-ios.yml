@@ -1,0 +1,55 @@
+# Build Benokee app voor iOS (simulator) – geen Mac nodig, draait op GitHub's macOS runner.
+# Repo-root bevat benokee_app als submap; alle stappen draaien in benokee_app.
+# Zie benokee_app/IOS_TESTEN_ZONDER_MAC.md voor TestFlight / echte iPhone.
+
+name: iOS build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: benokee_app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Flutter setup
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Flutter doctor
+        run: flutter doctor -v
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Ensure iOS project
+        run: |
+          if [ ! -d "ios/Runner.xcodeproj" ]; then
+            echo "iOS Xcode project missing, generating..."
+            flutter create --platforms=ios .
+          fi
+
+      - name: CocoaPods install
+        run: |
+          cd ios
+          pod install
+          cd ..
+
+      - name: Build iOS (simulator)
+        run: flutter build ios --simulator --no-codesign
+
+      - name: Summary
+        run: |
+          echo "✅ iOS build (simulator) succeeded."
+          echo "To test on a real iPhone: see IOS_TESTEN_ZONDER_MAC.md (TestFlight or Codemagic)."
