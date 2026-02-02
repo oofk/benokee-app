@@ -24,6 +24,9 @@ migrate_working_dir/
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
+# Machine-specific; Flutter regenerates these (anders faalt iOS-build op CI/macOS)
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
